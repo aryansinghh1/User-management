@@ -3,7 +3,7 @@ import { optional, z } from "zod";
 export const createUserDTO = z.object({
   name: z.string().min(3, "name must be at least 3 chars"),
   email: z.string().email("invalid email"),
-  isActive: z.boolean({
+  isActive: z.coerce.boolean({
     required_error: "isActive is required",
     invalid_type_error: "isActive must be true or false",
   }),
@@ -14,6 +14,6 @@ export const createUserDTO = z.object({
 export const updateUserDTO = z.object({
   name: z.string().min(3).optional(),
   email: z.string().email().optional(),
-  isActive: z.boolean().optional(),
+  isActive: z.coerce.boolean().optional(),
    age: z.number().int().min(18).max(60),
 });

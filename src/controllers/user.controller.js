@@ -1,8 +1,14 @@
 import * as userService from "../services/user.service.js";
 
-export const getUsers = (req,res)=>{
-    const users = userService.getAll();
-    res.json(users);
+export const getUsers = (req, res) => {
+  let filter = {};
+
+  if (req.query.isActive !== undefined) {
+    filter.isActive = req.query.isActive === "true";
+  }
+
+  const users = userService.getAll(filter);
+  res.json(users);
 };
 
 export const createUser = (req,res)=>{
