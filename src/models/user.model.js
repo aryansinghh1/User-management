@@ -16,8 +16,10 @@ const userSchema = new mongoose.Schema(
         },
         age: Number,
         isActive: {
+            type: Boolean,
+            default: true,
 
-        }
+        },
     },
     {timestamps: true},
 
