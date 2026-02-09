@@ -1,34 +1,44 @@
-let users = [];
+// let users = [];
 
-export const getAll = (filter = {}) => {
-  if (Object.keys(filter).length === 0) {
-    return users;
-  }
+// export const getAll = (filter = {}) => {
+//   if (Object.keys(filter).length === 0) {
+//     return users;
+//   }
 
-  return users.filter((user) => {
-    return Object.keys(filter).every(
-      (key) => user[key] === filter[key]
-    );
-  });
-};
+//   return users.filter((user) => {
+//     return Object.keys(filter).every(
+//       (key) => user[key] === filter[key]
+//     );
+//   });
+// };
 
-export const create = (data) => {
-  const user = {
-    id: Date.now().toString(),
-    ...data,
-  };
-  users.push(user);
-  return user;
-};
+// export const create = (data) => {
+//   const user = {
+//     id: Date.now().toString(),
+//     ...data,
+//   };
+//   users.push(user);
+//   return user;
+// };
 
-export const upate = (id, data) => {
-  const index = users.findIndex((u) => u.id === id);
-  if (index === -1) throw new Error("User not found");
+// export const upate = (id, data) => {
+//   const index = users.findIndex((u) => u.id === id);
+//   if (index === -1) throw new Error("User not found");
 
-  users[index] = { ...users[index], ...data };
-  return users[index];
-};
+//   users[index] = { ...users[index], ...data };
+//   return users[index];
+// };
 
-export const remove = (id) => {
-  users = users.filter((u) => u.id !== id);
-};
+// export const remove = (id) => {
+//   users = users.filter((u) => u.id !== id);
+// };
+
+import User from "../models/user..model.js";
+
+export const getAll = async () => User.find();
+export const create = async (data) => User.create(data);
+
+export const update = async (id,data)=>
+  User.findByIdAndUpdate(id, data,{new: true});
+
+export const remove = async (id) => User.findByIdAndDelete(id);
