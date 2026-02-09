@@ -33,7 +33,7 @@
 //   users = users.filter((u) => u.id !== id);
 // };
 
-import User from "../models/user..model.js";
+import User from "../models/user.model.js";
 
 export const getAll = async () => User.find();
 export const create = async (data) => User.create(data);
